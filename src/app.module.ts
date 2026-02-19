@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot(
       process.env.MONGODB_URI || 'mongodb://localhost:27017/ocha-api',
     ),
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
