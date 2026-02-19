@@ -10,9 +10,9 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('register')
-  @ApiOperation({ summary: 'Registra un nou usuari' })
+  @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({ type: RegisterUserDto })
-  @ApiResponse({ status: 201, description: 'Usuari registrat correctament' })
+  @ApiResponse({ status: 201, description: 'User successfully registered' })
   @ApiResponse({ status: 409, description: "Nom d'usuari ja existent" })
   @UsePipes(
     new ValidationPipe({
