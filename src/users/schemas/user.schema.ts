@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Hobby } from 'src/common/enums/hobby.enum';
 
 export type UserDocument = User & Document;
 
@@ -20,8 +19,11 @@ export class User {
   @Prop({ required: true, select: false })
   password: string;
 
-  @Prop({ type: [String], enum: Hobby, required: true })
-  hobbies: Hobby[];
+  @Prop({ required: true })
+  adress: string;
+
+  @Prop({})
+  phone: string;
 
   createdAt?: Date;
 }

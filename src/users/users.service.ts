@@ -22,7 +22,7 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<UserDocument> {
-    const { userName, name, email, password, hobbies } = createUserDto;
+    const { userName, name, email, password, adress, phone } = createUserDto;
 
     const existingUser = await this.userModel.findOne({ userName }).exec();
 
@@ -37,7 +37,8 @@ export class UsersService {
       password: hashedPassword,
       name,
       email,
-      hobbies,
+      adress,
+      phone
     });
 
     return newUser.save();

@@ -1,4 +1,3 @@
-import { Hobby } from './../common/enums/hobby.enum';
 import { ApiTags } from '@nestjs/swagger';
 import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -24,8 +23,9 @@ export class UsersController {
       userName: string;
       name: string;
       email: string;
-      hobbies: Hobby[];
       password?: string;
+      adress: string;
+      phone: string;
       createdAt: Date;
     };
 
@@ -34,7 +34,8 @@ export class UsersController {
       userName: userObject.userName,
       name: userObject.name,
       email: userObject.email,
-      hobbies: userObject.hobbies,
+      adress: userObject.adress,
+      phone: userObject.phone,
       createdAt: userObject.createdAt,
     };
   }
@@ -49,7 +50,8 @@ export class UsersController {
       userName: user.userName,
       name: user.name,
       email: user.email,
-      hobbies: user.hobbies,
+      adress: user.adress,
+      phone: user.phone,
       createdAt: user.createdAt,
     }));
   }

@@ -14,7 +14,7 @@ describe('UsersService', () => {
   let service: UsersService;
   let model: any;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   const mockUserModel = jest.fn().mockImplementation((dto) => ({
     ...dto,
     save: jest.fn().mockResolvedValue({ _id: '123', ...dto }),
@@ -50,7 +50,8 @@ describe('UsersService', () => {
       name: 'Test User',
       email: 'test@example.com',
       password: 'password123',
-      hobbies: ['Sports'],
+      adress: 'Test street 123',
+      phone: '123456789'
     };
 
     (model.findOne as jest.Mock).mockReturnValue({
@@ -74,7 +75,8 @@ describe('UsersService', () => {
       name: 'Test User',
       email: 'test@example.com',
       password: 'password123',
-      hobbies: ['Sports'],
+      adress: 'Test street 123',
+      phone: '123456789'
     };
 
     (model.findOne as jest.Mock).mockReturnValue({
