@@ -15,11 +15,14 @@ export class Product {
     @Prop({ required: true, trim: true, minLength: 3, maxLength: 100 })
     name: string;
 
-    @Prop({ required: true, trim: true, minLength: 10, maxLength: 500})
+    @Prop({ required: true, minLength: 10, maxLength: 500})
     description: string;
 
     @Prop({ required: true, min: 0})
     price: number;
+
+    @Prop({ required: true, min: 0, default: 0})
+    stock: number;
 
     @Prop({ required: true, enum: Category})
     category: Category; 
@@ -29,6 +32,15 @@ export class Product {
 
     @Prop({ required: true, trim: true})
     imageUrl: string;
+
+    @Prop({ default: true })
+    isActive?: boolean;  // para desactivar productos
+    
+    @Prop({ min: 0, max: 5 })
+    rating?: number;  
+    
+    @Prop({ default: 0 })
+    soldCount?: number;
 
 } 
 

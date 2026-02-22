@@ -23,7 +23,7 @@ export class User {
   adress: string;
 
   @Prop({})
-  phone: string;
+  phone?: string;
 
   createdAt?: Date;
 }

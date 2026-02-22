@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength, MaxLength, IsEnum, IsNumber } from "class-validator";
+import { IsNotEmpty, IsString, MinLength, MaxLength, IsEnum, IsNumber, Min, Max, IsUrl, IsOptional, IsBoolean } from "class-validator";
 import { Category } from "src/common/enums/category.enum";
 import { Intensity } from "src/common/enums/intensity.enum";
 
@@ -16,9 +16,13 @@ export class CreateProductDto {
     @MaxLength(500, { message: 'Description cannot be have more than 500 characters' })
     description: string;
 
-    @IsNotEmpty({message: 'Price is mandatory'})
     @IsNumber({}, {message: 'Price must be a number'})
+    @Min(0, {message: 'Stock cannot be inferior of 0'})
     price: number;
+
+    @IsNumber({}, {message: 'Stock must be a number'})
+    @Min(0,  {message: 'Stock cannot be inferior of 0'} )
+    stock: number;
 
     @IsEnum(Category)
     category: Category
@@ -26,9 +30,23 @@ export class CreateProductDto {
     @IsEnum(Intensity)
     intensity: Intensity;
 
-    @IsNotEmpty({message: 'ImageUrl is mandatory' })
-    @IsString({message: 'ImageUrl must be a chain of text'})
+    @IsUrl()
     imageUrl: string;
+
+    @IsOptional()
+    @IsBoolean()
+    isActive?: boolean;
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Max(5)
+    rating?: number;
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    soldCount?: number;
 
 
 

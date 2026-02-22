@@ -4,6 +4,6 @@ export class UserResponseDto {
   name: string;
   email: string;
   adress: string;
-  phone: string;
+  phone?: string;
   createdAt?: Date;
 }

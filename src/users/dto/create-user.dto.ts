@@ -4,6 +4,7 @@ import {
   IsEmail,
   MinLength,
   Matches,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -27,6 +28,7 @@ export class CreateUserDto {
   @IsString({ message: 'Adress must be a chain of text' })
   adress: string;
 
+  @IsOptional()
   @Matches(/^\d{9,15}$/, { message: 'Phone must be 9-15 digits' })
   phone: string;
 }
