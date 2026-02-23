@@ -1,7 +1,6 @@
-export enum Category {  
+export enum Base {
   Matcha = 'Matcha', 
   Sencha = 'Sencha',
   Hojicha = 'Hojicha',
   Gyokuro = 'Gyokuro',
-  Accessories = 'Accessories',
 }
