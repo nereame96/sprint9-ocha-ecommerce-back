@@ -1,7 +1,5 @@
-import { IsNotEmpty } from 'class-validator';
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { Type } from '@nestjs/common';
 import { Category } from '../../common/enums/category.enum';
 import { Intensity } from 'src/common/enums/intensity.enum';
 import { Quantity } from 'src/common/enums/quantity.enum';
