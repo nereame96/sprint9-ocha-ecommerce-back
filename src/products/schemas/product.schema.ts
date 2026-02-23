@@ -4,6 +4,7 @@ import { Document } from "mongoose";
 import { Type } from '@nestjs/common';
 import { Category } from '../../common/enums/category.enum';
 import { Intensity } from 'src/common/enums/intensity.enum';
+import { Quantity } from 'src/common/enums/quantity.enum';
 
 export type ProductDocument = Product & Document;
 
@@ -26,6 +27,9 @@ export class Product {
 
     @Prop({ required: true, enum: Category})
     category: Category; 
+
+    @Prop({ required: true, enum: Quantity})
+    quantity: Quantity; 
 
     @Prop({ required: true, enum: Intensity})
     intensity: Intensity; 
