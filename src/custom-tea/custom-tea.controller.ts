@@ -1,34 +1,64 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards, Put, HttpCode, HttpStatus } from '@nestjs/common';
 import { CustomTeaService } from './custom-tea.service';
 import { CreateCustomTeaDto } from './dto/create-custom-tea.dto';
 import { UpdateCustomTeaDto } from './dto/update-custom-tea.dto';
+import { CustomTea } from "./schemas/custom-tea.schema";
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+
+interface RequestWithUser extends Request {
+  user: {
+    userId: string;
+    _id: string;
+  };
+}
+
 
 @Controller('custom-tea')
 export class CustomTeaController {
   constructor(private readonly customTeaService: CustomTeaService) {}
 
   @Post()
-  create(@Body() createCustomTeaDto: CreateCustomTeaDto) {
-    return this.customTeaService.create(createCustomTeaDto);
+  @UseGuards(JwtAuthGuard)
+  async create(
+    @Body() createCustomTeaDto: CreateCustomTeaDto,
+    @Req() req: RequestWithUser,
+  ): Promise<CustomTea> {
+
+    const userId = req.user.userId
+
+    return this.customTeaService.create(createCustomTeaDto, userId);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<CustomTea[]> {
     return this.customTeaService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customTeaService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<CustomTea> {
+    return this.customTeaService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomTeaDto: UpdateCustomTeaDto) {
-    return this.customTeaService.update(+id, updateCustomTeaDto);
+  @Get('user/my-customTeas')
+  @UseGuards(JwtAuthGuard)
+  async findMyCustomTeas(@Req() req: RequestWithUser) {
+    return this.customTeaService.findByCreator(req.user.userId);
+  }
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  async update(
+    @Param('id') id: string, 
+    @Body() updateCustomTeaDto: UpdateCustomTeaDto,
+    @Req() req: RequestWithUser,
+  ) {
+    return this.customTeaService.update(id, updateCustomTeaDto, req.user.userId);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.customTeaService.remove(+id);
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
+    return this.customTeaService.remove(id, req.user.userId);
   }
 }
