@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Product, ProductDocument } from './schemas/product.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -14,7 +14,7 @@ export class ProductsService {
         return this.productModel.find().exec()
     }
 
-    async findOne(id: string): Promise<Product> {
+    async findOne(id: string): Promise<ProductDocument> {
         const product = await this.productModel.findById(id).exec()
 
         if(!product) {
@@ -52,5 +52,21 @@ export class ProductsService {
         if (result.deletedCount === 0) {
             throw new NotFoundException(`Product with id: ${id} not found`)
         }
+    }
+
+    async decreaseStock( id: string, quantity: number): Promise<void>{
+        const product = await this.findOne(id)
+
+        if (product.stock < quantity) {
+            throw new BadRequestException(`Not enough stock of ${product}. Available: ${product.stock}`)
+        }
+
+        product.stock -= quantity
+
+        if (product.soldCount !== undefined) {
+            product.soldCount += quantity
+        }
+
+        await product.save()
     }
 }

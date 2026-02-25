@@ -6,6 +6,40 @@ import { CustomTea } from 'src/custom-tea/schemas/custom-tea.schema';
 import { Product } from 'src/products/schemas/product.schema';
 
 
+class OrderProduct {
+  @Prop({ required: true })
+  productId: string;
+
+  @Prop({ required: true })
+  name: string;  
+
+  @Prop({ required: true })
+  imageUrl: string;  
+
+  @Prop({ required: true })
+  quantity: number;
+
+  @Prop({ required: true })
+  unitPrice: number;
+}
+
+class OrderCustomTea {
+  @Prop({ required: true })
+  customTeaId: string;
+
+  @Prop({ required: true })
+  name: string;  
+
+  @Prop({ required: true })
+  imageUrl: string;  
+
+  @Prop({ required: true })
+  quantity: number;
+
+  @Prop({ required: true })
+  unitPrice: number;
+}
+
 
 class DeliveryAddress {
   @Prop({ required: true })
@@ -30,16 +64,16 @@ export class Order {
     userId: Types.ObjectId;
 
     @Prop({ type: [Object], default: [] })
-    products: Product[];
+    products: OrderProduct[];
 
     @Prop({ type: [Object], default: [] })
-    customTeas: CustomTea[];
+    customTeas: OrderCustomTea[];
 
     @Prop({ required: true })
-    totalAmount: number;
+    totalAmount: number; //ya viene del front calculado
 
     @Prop({ required: true })
-    totalItems: number;
+    totalItems: number; //ya viene del front calculado
     
     @Prop({ required: true, enum: Status, default: 'paid' })
     status: Status
