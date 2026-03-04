@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Base } from 'src/common/enums/base.enum';
-import { Quantity } from 'src/common/enums/quantity.enum';
+import { Size } from 'src/common/enums/size.enum';
 import { Ingredients } from 'src/common/enums/ingredients.enum';
 
 export type CustomTeaDocument = CustomTea & Document;
@@ -18,7 +18,7 @@ export class CustomTea {
   @Prop({ required: true, enum: Base })
   base: Base;
 
-  @Prop({ required: true, enum: Ingredients })
+  @Prop({ required: true, enum: Object.values(Ingredients), type: [String] })
   ingredients: Ingredients[];
 
   @Prop({ required: true, min: 0 })
@@ -27,8 +27,8 @@ export class CustomTea {
   @Prop({ required: true, min: 0 })
   intensity: number;
 
-  @Prop({ required: true, enum: Quantity })
-  quantity: Quantity;
+  @Prop({ required: true, enum: Size })
+  size: Size;
 
   @Prop({ required: true, trim: true })
   imageUrl: string;

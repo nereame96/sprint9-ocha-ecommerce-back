@@ -92,6 +92,9 @@ export class Order {
 
     @Prop({ type: Object, required: true })
     deliveryAddress: DeliveryAddress
+
+    @Prop( )
+    phone: string;
     
 
 }

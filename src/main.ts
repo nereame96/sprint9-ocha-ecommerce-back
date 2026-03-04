@@ -8,8 +8,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      // 'http://localhost:4200',   Hay que poner los enlazes de Vercel
-      // 'https://hobby-share-front-git-main-nereas-projects-1dce2134.vercel.app',
+       'http://localhost:4200',   
+      // 'https://hobby-share-front-git-main-nereas-projects-1dce2134.vercel.app', Hay que poner los enlazes de Vercel
     ],
   });
 

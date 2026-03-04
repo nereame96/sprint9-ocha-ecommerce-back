@@ -4,10 +4,11 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
-import { CustomTeaModule } from './custom-tea/custom-tea.module';
 import { OrderModule } from './order/order.module';
 import { StoreLocationsModule } from './store-locations/store-locations.module';
 import { CustomTeaModule } from './custom-tea/custom-tea.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { CustomTeaModule } from './custom-tea/custom-tea.module';
     CustomTeaModule,
     StoreLocationsModule,
     OrderModule,
+    AuthModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

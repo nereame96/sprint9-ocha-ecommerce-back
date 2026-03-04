@@ -12,33 +12,29 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('register')
-  async register(
-    @Body() createUserDto: CreateUserDto,
-  ): Promise<UserResponseDto> {
-    const user: UserDocument = await this.usersService.create(createUserDto);
+  // @Post('register')
+  // async register(
+  //   @Body() createUserDto: CreateUserDto,
+  // ): Promise<UserResponseDto> {
+  //   const user: UserDocument = await this.usersService.create(createUserDto);
 
-    const userObject = user.toObject() as {
-      _id: Types.ObjectId;
-      userName: string;
-      name: string;
-      email: string;
-      password?: string;
-      adress: string;
-      phone: string;
-      createdAt: Date;
-    };
+  //   const userObject = user.toObject() as {
+  //     _id: Types.ObjectId;
+  //     userName: string;
+  //     name: string;
+  //     email: string;
+  //     password?: string;
+  //     createdAt: Date;
+  //   };
 
-    return {
-      id: userObject._id.toString(),
-      userName: userObject.userName,
-      name: userObject.name,
-      email: userObject.email,
-      adress: userObject.adress,
-      phone: userObject.phone,
-      createdAt: userObject.createdAt,
-    };
-  }
+  //   return {
+  //     id: userObject._id.toString(),
+  //     userName: userObject.userName,
+  //     name: userObject.name,
+  //     email: userObject.email,
+  //     createdAt: userObject.createdAt,
+  //   };
+  // }
 
   @Get()
   @UseGuards(JwtAuthGuard)
@@ -50,8 +46,6 @@ export class UsersController {
       userName: user.userName,
       name: user.name,
       email: user.email,
-      adress: user.adress,
-      phone: user.phone,
       createdAt: user.createdAt,
     }));
   }

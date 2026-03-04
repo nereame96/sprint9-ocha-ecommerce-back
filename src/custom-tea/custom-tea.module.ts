@@ -10,5 +10,6 @@ import { CustomTea, CustomTeaSchema } from './schemas/custom-tea.schema';
   ],
   controllers: [CustomTeaController],
   providers: [CustomTeaService],
+  exports: [CustomTeaService]
 })
 export class CustomTeaModule {}

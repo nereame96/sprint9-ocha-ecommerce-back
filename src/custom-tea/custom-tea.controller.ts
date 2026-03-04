@@ -4,6 +4,7 @@ import { CreateCustomTeaDto } from './dto/create-custom-tea.dto';
 import { UpdateCustomTeaDto } from './dto/update-custom-tea.dto';
 import { CustomTea } from "./schemas/custom-tea.schema";
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 interface RequestWithUser extends Request {
   user: {
@@ -12,7 +13,7 @@ interface RequestWithUser extends Request {
   };
 }
 
-
+@ApiTags('CustomTeas')
 @Controller('custom-tea')
 export class CustomTeaController {
   constructor(private readonly customTeaService: CustomTeaService) {}

@@ -24,11 +24,5 @@ export class CreateUserDto {
   @MinLength(6)
   password: string;
 
-  @IsNotEmpty({ message: 'Adress is mandatory' })
-  @IsString({ message: 'Adress must be a chain of text' })
-  adress: string;
-
-  @IsOptional()
-  @Matches(/^\d{9,15}$/, { message: 'Phone must be 9-15 digits' })
-  phone: string;
+  
 }

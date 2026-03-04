@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString, MinLength, MaxLength, IsEnum, IsNumber, Min, Max, IsUrl, IsOptional, IsBoolean } from "class-validator";
 import { Category } from "src/common/enums/category.enum";
 import { Intensity } from "src/common/enums/intensity.enum";
-import { Quantity } from "src/common/enums/quantity.enum";
+
 
 
 export class CreateProductDto {
@@ -28,8 +28,8 @@ export class CreateProductDto {
     @IsEnum(Category)
     category: Category
 
-    @IsEnum(Quantity)
-    quantity: Quantity
+    // @IsEnum(Quantity)  ya no se necesita todo es 100gr
+    // quantity: Quantity
 
     @IsEnum(Intensity)
     intensity: Intensity;

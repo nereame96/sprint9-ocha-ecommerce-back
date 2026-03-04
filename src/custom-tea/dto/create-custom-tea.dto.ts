@@ -14,7 +14,7 @@ import {
   IsArray,
 } from 'class-validator';
 import { Base } from 'src/common/enums/base.enum';
-import { Quantity } from 'src/common/enums/quantity.enum';
+import { Size } from 'src/common/enums/size.enum';
 import { Ingredients } from 'src/common/enums/ingredients.enum';
 export class CreateCustomTeaDto {
   @IsNotEmpty({ message: 'Name is mandatory' })
@@ -26,7 +26,7 @@ export class CreateCustomTeaDto {
   @IsEnum(Base)
   base: Base;
 
-  @IsEnum(Ingredients)
+  @IsEnum(Ingredients, { each: true })
   @IsArray()
   ingredients: Ingredients[];
 
@@ -36,8 +36,8 @@ export class CreateCustomTeaDto {
   @IsNumber()
   intensity: number;
 
-  @IsEnum(Quantity)
-  quantity: Quantity;
+  @IsEnum(Size)
+  size: Size;
 
   @IsUrl()
   imageUrl: string;

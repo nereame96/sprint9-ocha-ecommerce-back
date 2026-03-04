@@ -4,6 +4,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Order } from './schemas/order.schema';
+import { ApiTags } from '@nestjs/swagger';
 
 interface RequestWithUser extends Request {
   user: {
@@ -11,7 +12,7 @@ interface RequestWithUser extends Request {
     _id: string;
   };
 }
-
+@ApiTags('Orders')
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}

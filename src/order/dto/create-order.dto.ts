@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, ValidateNested, IsEnum, IsBoolean, IsString, IsNotEmpty, IsUrl, IsOptional } from 'class-validator';
+import { IsArray, IsNumber, ValidateNested, IsEnum, IsBoolean, IsString, IsNotEmpty, IsUrl, IsOptional, Matches } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CustomTea } from "src/custom-tea/schemas/custom-tea.schema";
 import { CreateProductDto } from "src/products/dto/create-product.dto";
@@ -6,40 +6,11 @@ import { Product } from "src/products/schemas/product.schema";
 import { CreateCustomTeaDto } from "src/custom-tea/dto/create-custom-tea.dto";
 import { PaymentMethod } from '../../common/enums/payment-method.enum';
 import { DeliveryAddressDto } from './delivery-address.dto';
+import { OrderProductDto } from './order-product.dto';
+import { OrderCustomTeaDto } from './order-customtea.dto';
 
-export class OrderProductDto {
-  @IsString()
-  productId: string;
 
-  @IsString()
-  name: string;
 
-  @IsUrl()
-  imageUrl: string;
-
-  @IsNumber()
-  quantity: number;
-
-  @IsNumber()
-  unitPrice: number;
-}
-
-export class OrderCustomTeaDto {
-  @IsString()
-  customTeaId: string;
-
-  @IsString()
-  name: string;
-
-  @IsUrl()
-  imageUrl: string;
-
-  @IsNumber()
-  quantity: number;
-
-  @IsNumber()
-  unitPrice: number;
-}
 
 export class CreateOrderDto {
 
@@ -74,7 +45,8 @@ export class CreateOrderDto {
     @IsNotEmpty()
     deliveryAddress: DeliveryAddressDto
 
-
+    @Matches(/^\d{9,15}$/, { message: 'Phone must be 9-15 digits' })
+    phone: string;
 
 }
 
