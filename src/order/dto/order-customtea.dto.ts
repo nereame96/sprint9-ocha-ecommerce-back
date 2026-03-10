@@ -8,7 +8,7 @@ export class OrderCustomTeaDto {
   @IsString()
   name: string;
 
-  @IsUrl()
+  @IsString()
   imageUrl: string;
 
   @IsNumber()

@@ -34,7 +34,7 @@ export class CreateProductDto {
     @IsEnum(Intensity)
     intensity: Intensity;
 
-    @IsUrl()
+    @IsString()
     imageUrl: string;
 
     @IsOptional()

@@ -39,6 +39,6 @@ export class CreateCustomTeaDto {
   @IsEnum(Size)
   size: Size;
 
-  @IsUrl()
+  @IsString()
   imageUrl: string;
 }

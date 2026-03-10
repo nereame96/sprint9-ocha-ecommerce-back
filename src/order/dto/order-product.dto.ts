@@ -7,7 +7,7 @@ export class OrderProductDto {
   @IsString()
   name: string;
 
-  @IsUrl()
+  @IsString()
   imageUrl: string;
 
   @IsNumber()
