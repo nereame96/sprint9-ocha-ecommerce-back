@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
-import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { UnauthorizedException } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -43,7 +43,7 @@ describe('AuthService', () => {
       name: 'Test User',
       email: 'test@example.com',
       password: 'password123',
-      hobbies: ['Sports'],
+
     };
 
     mockUsersService.create.mockResolvedValue({

@@ -75,10 +75,10 @@ export class Order {
     @Prop({ required: true })
     totalItems: number; //ya viene del front calculado
     
-    @Prop({ required: true, enum: Status, default: 'paid' })
+    @Prop({ required: true, type: String, enum: Status, default: 'paid' })
     status: Status
 
-    @Prop({ required: true, enum: PaymentMethod, default: 'card' })
+    @Prop({ required: true, type: String, enum: PaymentMethod, default: 'card' })
     paymentMethod: PaymentMethod;
 
     @Prop()

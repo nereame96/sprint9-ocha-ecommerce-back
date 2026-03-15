@@ -15,7 +15,7 @@ export class CustomTea {
   @Prop({ required: true, trim: true, minLength: 3, maxLength: 100 })
   name: string;
 
-  @Prop({ required: true, enum: Base })
+  @Prop({ required: true, type: String, enum: Base })
   base: Base;
 
   @Prop({ required: true, enum: Object.values(Ingredients), type: [String] })
@@ -27,7 +27,7 @@ export class CustomTea {
   @Prop({ required: true, min: 0 })
   intensity: number;
 
-  @Prop({ required: true, enum: Size })
+  @Prop({ required: true, type: String, enum: Size })
   size: Size;
 
   @Prop({ required: true, trim: true })

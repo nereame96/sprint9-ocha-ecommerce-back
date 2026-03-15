@@ -31,7 +31,6 @@ describe('AuthController', () => {
       name: 'Test User',
       email: 'test@example.com',
       password: 'password123',
-      hobbies: ['Sports'],
     };
 
     mockAuthService.register.mockResolvedValue({
