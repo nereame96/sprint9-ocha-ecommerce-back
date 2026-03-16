@@ -70,10 +70,10 @@ export class Order {
     customTeas: OrderCustomTea[];
 
     @Prop({ required: true })
-    totalAmount: number; //ya viene del front calculado
+    totalAmount: number; 
 
     @Prop({ required: true })
-    totalItems: number; //ya viene del front calculado
+    totalItems: number; 
     
     @Prop({ required: true, type: String, enum: Status, default: 'paid' })
     status: Status
@@ -85,7 +85,7 @@ export class Order {
     cardLast4?: string;
 
     @Prop({ default: true })
-    isPaid: boolean; //Simular pago
+    isPaid: boolean; 
 
     @Prop({ default: Date.now })
     paidAt: Date;

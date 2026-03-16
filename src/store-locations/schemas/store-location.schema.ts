@@ -3,10 +3,8 @@ import { Document } from "mongoose";
 
 export type StoreLocationDocument = StoreLocation & Document;
 
-@Schema({ timestamps: true}) // createdAt y updatedAt por defecto
+@Schema({ timestamps: true})
 export class StoreLocation {
-    
-    // _id por defecto
 
     @Prop({ required: true, trim: true, minLength: 3, maxLength: 100 })
     name: string;

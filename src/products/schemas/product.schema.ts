@@ -6,10 +6,8 @@ import { Intensity } from 'src/common/enums/intensity.enum';
 
 export type ProductDocument = Product & Document;
 
-@Schema({ timestamps: true}) // createdAt y updatedAt por defecto
+@Schema({ timestamps: true})
 export class Product {
-    
-    // _id por defecto
 
     @Prop({ required: true, trim: true, minLength: 3, maxLength: 100 })
     name: string;
@@ -36,7 +34,7 @@ export class Product {
     imageUrl: string;
 
     @Prop({ default: true })
-    isActive?: boolean;  // para desactivar productos
+    isActive?: boolean;  
     
     @Prop({ min: 0, max: 5 })
     rating?: number;  

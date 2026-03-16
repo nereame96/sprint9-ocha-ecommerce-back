@@ -12,30 +12,6 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // @Post('register')
-  // async register(
-  //   @Body() createUserDto: CreateUserDto,
-  // ): Promise<UserResponseDto> {
-  //   const user: UserDocument = await this.usersService.create(createUserDto);
-
-  //   const userObject = user.toObject() as {
-  //     _id: Types.ObjectId;
-  //     userName: string;
-  //     name: string;
-  //     email: string;
-  //     password?: string;
-  //     createdAt: Date;
-  //   };
-
-  //   return {
-  //     id: userObject._id.toString(),
-  //     userName: userObject.userName,
-  //     name: userObject.name,
-  //     email: userObject.email,
-  //     createdAt: userObject.createdAt,
-  //   };
-  // }
-
   @Get()
   @UseGuards(JwtAuthGuard)
   async findAll(): Promise<UserResponseDto[]> {

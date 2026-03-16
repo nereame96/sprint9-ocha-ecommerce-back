@@ -28,9 +28,6 @@ export class CreateProductDto {
     @IsEnum(Category)
     category: Category
 
-    // @IsEnum(Quantity)  ya no se necesita todo es 100gr
-    // quantity: Quantity
-
     @IsEnum(Intensity)
     intensity: Intensity;
 

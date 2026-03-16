@@ -6,9 +6,9 @@ import { Ingredients } from 'src/common/enums/ingredients.enum';
 
 export type CustomTeaDocument = CustomTea & Document;
 
-@Schema({ timestamps: true }) // createdAt y updatedAt por defecto
+@Schema({ timestamps: true }) 
 export class CustomTea {
-  // _id por defecto
+  
   @Prop({ required: true, trim: true })
   userId: string;
 
