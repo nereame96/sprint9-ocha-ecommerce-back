@@ -9,7 +9,8 @@ async function bootstrap() {
   app.enableCors({
     origin: [
        'http://localhost:4200',   
-      // 'https://hobby-share-front-git-main-nereas-projects-1dce2134.vercel.app', Hay que poner los enlazes de Vercel
+       'https://sprint9-ocha-ecommerce-front-m7b6q0gln-nereas-projects-1dce2134.vercel.app', 
+       'https://sprint9-ocha-ecommerce-front.vercel.app'                                     
     ],
   });
 
