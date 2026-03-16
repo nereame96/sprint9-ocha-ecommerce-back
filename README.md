@@ -1,98 +1,230 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Ocha
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A premium Japanese tea e-commerce platform featuring a custom tea builder, shopping cart, and interactive boutique locator.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+1. [Overview](#1-overview)
+2. [Key Features](#2-key-features)
+3. [Tech Stack](#3-tech-stack)
+4. [Getting Started](#4-getting-started)
+5. [Project Structure](#5-project-structure)
+6. [Authentication Flow](#6-authentication-flow)
+7. [API Endpoints](#7-api-endpoints)
+8. [Tea Bases & Ingredients](#8-tea-bases--ingredients)
+9. [Testing](#9-testing)
+10. [Map Integration](#10-map-integration)
+11. [Custom Tea Builder](#11-custom-tea-builder)
+12. [Cart & Checkout](#12-cart--checkout)
+13. [Security Features](#13-security-features)
+14. [Decisions and Justifications](#15-decisions-and-justifications)
+15. [Project Screenshots](#16-project-screenshots)
+16. [Demo](#17-demo)
+17. [Team](#18-team)
+18. [License](#19-license)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 1. Overview
 
-## Project setup
+Ocha is a full-stack e-commerce application that enables users to discover premium Japanese teas, create their own custom blends, and manage their purchases. Users can locate physical boutiques on an interactive map, build custom teas with real-time price calculation, and process payments through a simulated Stripe checkout.
+
+## 2. Key Features
+
+* **User Authentication:** Secure JWT-based registration and login with bcrypt password hashing.
+* **Product Catalog:** Browse premium tea products.
+* **Custom Tea Builder:** Interactive tool to select base, ingredients, and size with real-time intensity and price calculations.
+* **Shopping Cart:** State management using Angular Signals for seamless additions and updates.
+* **Checkout & Payments:** Order payload generation and Stripe payment gateway simulation.
+* **Interactive Map:** Leaflet-powered map with store markers, custom popups, and synchronized list highlighting.
+* **Global Notifications:** Custom Toast service replacing native browser alerts for a premium UI experience.
+* **Responsive Design:** Minimalist, mobile-first design using Tailwind CSS v4.
+
+## 3. Tech Stack
+
+**Frontend**
+* Angular 21 with Signals for reactive state management
+* Tailwind CSS v4 for styling
+* Leaflet for interactive maps
+* Vitest for testing
+
+**Backend**
+* NestJS framework with TypeScript
+* MongoDB with Mongoose ODM
+* JWT authentication with Passport
+* class-validator for DTO validation
+* bcrypt for password security
+* Stripe API for payment simulation
+* Swagger for API documentation
+
+## 4. Getting Started
+
+### Prerequisites
+
+* Node.js (v18+)
+* MongoDB (local or Atlas cluster)
+* npm
+* Stripe Account (for payment simulation)
+
+### Backend Setup
 
 ```bash
-$ npm install
+cd backend
+npm install
 ```
 
-## Compile and run the project
+### Create .env file:
+```
+MONGODB_URI=mongodb+srv://[YOUR-CONNECTION-STRING]
+PORT=3000
+JWT_SECRET=[YOUR-SECRET-KEY]
+JWT_EXPIRATION_TIME=3600s
+STRIPE_SECRET_KEY=[YOUR-STRIPE-KEY]
+```
+### Start the server:
+```bash
+npm run start:dev
+```
+* API available at http://localhost:3000
+
+* Swagger docs at http://localhost:3000/api-docs
+
+
+### Frontend Setup
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd frontend
+npm install
+ng serve
 ```
+Application available at http://localhost:4200
 
-## Run tests
+
+## 5. Project Structure
+
+backend/
+├── src/
+│   ├── auth/           # JWT authentication & guards
+│   ├── users/          # User management
+│   ├── products/       # Standard products CRUD
+│   ├── custom-teas/    # Custom tea creation logic
+│   ├── orders/         # Order processing & Stripe integration
+│   └── store-locations/# Physical boutiques data
+│
+
+
+## 6. Authentication Flow
+
+* User registers with email and password.
+* Password is hashed using bcrypt.
+* User logs in and receives a JWT token.
+* Token stored in localStorage and sent via Authorization header.
+* Auth Guards protect routes requiring authentication (e.g., checkout).
+
+## 7. API Endpoints
+
+### Authentication
+
+* POST /auth/register - Register new user
+* POST /auth/login - Login and receive JWT token
+
+### Products & Teas
+
+* GET /products - Get all standard products
+* POST /custom-teas - Create and save a custom tea blend
+
+### Orders & Checkout
+
+* POST /orders/create-checkout-session - Initialize Stripe session
+* POST /orders - Save completed order to database
+
+### Store Locations
+
+* GET /store-locations - Get all physical boutiques coordinates
+
+## 8. Tea Bases & Ingredients
+Bases: [LISTA TUS BASES, ej: Matcha, Sencha, Gyokuro...]
+
+Ingredients (Max 4): [LISTA TUS INGREDIENTES, ej: Vanilla, Mint, Ginger...]
+
+Sizes: [LISTA TUS TAMAÑOS, ej: 50g, 100g, 250g...]
+
+## 9. Testing
+
+### Backend Tests
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd backend
+npm run test          # Unit tests
+npm run test:e2e      # End-to-end tests
+Frontend Tests
 ```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+cd frontend
+npm run test          # Vitest tests
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 10. Map Integration
 
-## Resources
+* Leaflet with OpenStreetMap tiles.
+* Custom markers for physical boutiques.
+* Bidirectional communication: Clicking a list item flies to the marker; clicking a marker highlights the store in the list.
 
-Check out a few resources that may come in handy when working with NestJS:
+## 11. Custom Tea Builder
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+* Interactive form using Angular Signals.
+* Real-time calculation of total price based on base, ingredients, and size.
+* Algorithm to calculate the tea's final intensity depending on selected elements.
+* Validation for maximum ingredients limit (4).
 
-## Support
+## 12. Cart & Checkout
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+* Centralized CartService using Signals for reactivity.
+* Handles both standard products and dynamically generated custom teas.
+* Form validation for delivery address.
+* Redirection to Stripe for secure payment simulation.
 
-## Stay in touch
+## 13. Security Features
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+* Password hashing with bcrypt.
+* JWT token-based authentication.
+* Stripe Checkout integration to avoid handling sensitive card data.
+* CORS configuration for frontend-backend communication.
+* Input validation with class-validator in NestJS.
 
-## License
+## 14. Decisions and Justifications
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Architecture Decisions
+
+* Angular Signals over RxJS: We chose Angular 21's Signals for state management (especially in the Cart and Custom Tea builder) to simplify reactivity and reduce boilerplate compared to traditional RxJS observables.
+* NestJS for Backend: Selected for its TypeScript-first approach and modular architecture, creating consistency with Angular's patterns.
+* MongoDB over SQL: Chosen for its flexible schema, ideal for an e-commerce where cart items can be either static products or highly dynamic custom teas.
+
+### Technical Decisions
+
+* Tailwind CSS v4: Upgraded to the latest Tailwind version to use native CSS variables (@theme) and reduce configuration files, accelerating the styling of the minimalist UI.
+* Custom Toast Service: Replaced native browser alerts with a global Toast component managed by Signals to maintain the premium, uninterrupted feel of the brand.
+* Stripe Checkout: Delegated payment processing entirely to Stripe's hosted checkout to guarantee security without managing complex PCI compliance.
+
+## 15. Project Screenshots
+Homepage & Catalog: [ADD LINK OR RELATIVE PATH TO IMAGE]
+Custom Tea Builder: [ADD LINK OR RELATIVE PATH TO IMAGE]
+Map & Store Locator: [ADD LINK OR RELATIVE PATH TO IMAGE]
+Checkout & Stripe: [ADD LINK OR RELATIVE PATH TO IMAGE]
+
+## 16. Demo
+
+Access the live demo: [Ocha Live Demo - AÑADIR LINK DE VERCEL]
+
+### Test Credentials:
+
+* Username: demo
+* Password: demo123 
+
+## 17. Auhor
+
+Developed as an individual learning project demonstrating full-stack development skills with modern frameworks and best practices.
+
+[Nerea Medina Carrasco / nereame96]
+
+
+## 18. License
+Educational project - created for learning purposes.
