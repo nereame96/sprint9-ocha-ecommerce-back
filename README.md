@@ -99,7 +99,7 @@ Application available at http://localhost:4200
 
 
 ## 5. Project Structure
-
+```
 backend/
 ├── src/
 │   ├── auth/           # JWT authentication & guards
@@ -109,7 +109,23 @@ backend/
 │   ├── orders/         # Order processing & Stripe integration
 │   └── store-locations/# Physical boutiques data
 │
+frontend/
+└── src/app/
+    ├── core/
+    │   ├── services/   # API services (cart, custom-tea, orders, map, toast)
+    │   ├── models/     # TypeScript interfaces (Product, CartItem, Order...)
+    │   └── enums/      # Base, Ingredients, Size enums
+    ├── auth/       # Login & Registration
+    ├── user/       # Order-history, profile-info & user-profile
+    ├── products/   # Catalog & Product detail
+    ├── custom-tea/ # Interactive builder component
+    ├── cart/       # Cart sidebar/view
+    ├── checkout/   # Delivery form & payment redirection
+    ├── checkout-succes/   # Create order & confirm
+    │── store-locations/     # Map and locations list
+    └── layout/         # Home, Navbar & Footer
 
+```
 
 ## 6. Authentication Flow
 
@@ -141,11 +157,12 @@ backend/
 * GET /store-locations - Get all physical boutiques coordinates
 
 ## 8. Tea Bases & Ingredients
-Bases: [LISTA TUS BASES, ej: Matcha, Sencha, Gyokuro...]
 
-Ingredients (Max 4): [LISTA TUS INGREDIENTES, ej: Vanilla, Mint, Ginger...]
+**Bases:** Matcha, Sencha, Gyokuro, Hojicha
 
-Sizes: [LISTA TUS TAMAÑOS, ej: 50g, 100g, 250g...]
+**Ingredients (Max 4):** Lemon, Cardamomo, Ginger, Jasmine
+
+**Sizes:** 50g, 100g, 250g
 
 ## 9. Testing
 
@@ -194,25 +211,29 @@ npm run test          # Vitest tests
 
 ### Architecture Decisions
 
-* Angular Signals over RxJS: We chose Angular 21's Signals for state management (especially in the Cart and Custom Tea builder) to simplify reactivity and reduce boilerplate compared to traditional RxJS observables.
-* NestJS for Backend: Selected for its TypeScript-first approach and modular architecture, creating consistency with Angular's patterns.
-* MongoDB over SQL: Chosen for its flexible schema, ideal for an e-commerce where cart items can be either static products or highly dynamic custom teas.
+* **Angular Signals over RxJS:** We chose Angular 21's Signals for state management (especially in the Cart and Custom Tea builder) to simplify reactivity and reduce boilerplate compared to traditional RxJS observables.
+* **NestJS for Backend:** Selected for its TypeScript-first approach and modular architecture, creating consistency with Angular's patterns.
+* **MongoDB over SQL:** Chosen for its flexible schema, ideal for an e-commerce where cart items can be either static products or highly dynamic custom teas.
 
 ### Technical Decisions
 
-* Tailwind CSS v4: Upgraded to the latest Tailwind version to use native CSS variables (@theme) and reduce configuration files, accelerating the styling of the minimalist UI.
-* Custom Toast Service: Replaced native browser alerts with a global Toast component managed by Signals to maintain the premium, uninterrupted feel of the brand.
-* Stripe Checkout: Delegated payment processing entirely to Stripe's hosted checkout to guarantee security without managing complex PCI compliance.
+* **Tailwind CSS v4:** Upgraded to the latest Tailwind version to use native CSS variables (@theme) and reduce configuration files, accelerating the styling of the minimalist UI.
+* **Custom Toast Service:** Replaced native browser alerts with a global Toast component managed by Signals to maintain the premium, uninterrupted feel of the brand.
+* **Stripe Checkout:** Delegated payment processing entirely to Stripe's hosted checkout to guarantee security without managing complex PCI compliance.
 
 ## 15. Project Screenshots
-Homepage & Catalog: [ADD LINK OR RELATIVE PATH TO IMAGE]
-Custom Tea Builder: [ADD LINK OR RELATIVE PATH TO IMAGE]
-Map & Store Locator: [ADD LINK OR RELATIVE PATH TO IMAGE]
-Checkout & Stripe: [ADD LINK OR RELATIVE PATH TO IMAGE]
+### Homepage & Catalog:
+ ![Home Catalog](https://res.cloudinary.com/daz3fkmg9/image/upload/v1773824260/catalog_wyu3ei.gif)
+### Custom Tea Builder: 
+![Custom Tea](https://res.cloudinary.com/daz3fkmg9/image/upload/v1773769115/custom-tea_arvbxk.gif )
+### Map & Store Locator: 
+![Map](https://res.cloudinary.com/daz3fkmg9/image/upload/v1773824614/map_jimyrh.gif)
+### Checkout & Stripe: 
+![Checkout](https://res.cloudinary.com/daz3fkmg9/image/upload/v1773766933/checkout_gwwcqk.gif)
 
 ## 16. Demo
 
-Access the live demo: [Ocha Live Demo - AÑADIR LINK DE VERCEL]
+Access the live demo: [Ocha Ecommerce Link](https://sprint9-ocha-ecommerce-front.vercel.app/)
 
 ### Test Credentials:
 
@@ -223,7 +244,7 @@ Access the live demo: [Ocha Live Demo - AÑADIR LINK DE VERCEL]
 
 Developed as an individual learning project demonstrating full-stack development skills with modern frameworks and best practices.
 
-[Nerea Medina Carrasco / nereame96]
+[Nerea Medina Carrasco Github](https://github.com/nereame96)
 
 
 ## 18. License
