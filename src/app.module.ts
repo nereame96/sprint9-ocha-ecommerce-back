@@ -9,6 +9,8 @@ import { StoreLocationsModule } from './store-locations/store-locations.module';
 import { CustomTeaModule } from './custom-tea/custom-tea.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { RawMaterialsModule } from './raw-materials/raw-materials.module';
+import { RawMaterialsModule } from './raw-materials/raw-materials.module';
 
 @Module({
   imports: [
@@ -23,7 +25,8 @@ import { UsersModule } from './users/users.module';
     StoreLocationsModule,
     OrderModule,
     AuthModule,
-    UsersModule
+    UsersModule,
+    RawMaterialsModule
   ],
   controllers: [AppController],
   providers: [AppService],
