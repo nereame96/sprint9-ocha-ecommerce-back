@@ -8,51 +8,51 @@ import { Product } from 'src/products/schemas/product.schema';
 
 class OrderProduct {
   @Prop({ required: true })
-  productId: string;
+  productId!: string;
 
   @Prop({ required: true })
-  name: string;  
+  name!: string;  
 
   @Prop({ required: true })
-  imageUrl: string;  
+  imageUrl!: string;  
 
   @Prop({ required: true })
-  quantity: number;
+  quantity!: number;
 
   @Prop({ required: true })
-  unitPrice: number;
+  unitPrice!: number;
 }
 
 class OrderCustomTea {
   @Prop({ required: true })
-  customTeaId: string;
+  customTeaId!: string;
 
   @Prop({ required: true })
-  name: string;  
+  name!: string;  
 
   @Prop({ required: true })
-  imageUrl: string;  
+  imageUrl!: string;  
 
   @Prop({ required: true })
-  quantity: number;
+  quantity!: number;
 
   @Prop({ required: true })
-  unitPrice: number;
+  unitPrice!: number;
 }
 
 
 class DeliveryAddress {
   @Prop({ required: true })
-  street: string;
+  street!: string;
 
   @Prop({ required: true })
-  city: string;
+  city!: string;
 
   @Prop({ required: true })
-  postalCode: string;
+  postalCode!: string;
 
   @Prop({ required: true })
-  country: string;
+  country!: string;
 }
 
 export type OrderDocument = Order & Document;
@@ -61,40 +61,40 @@ export type OrderDocument = Order & Document;
 export class Order {
     
     @Prop({ type: Types.ObjectId, required: true })
-    userId: Types.ObjectId;
+    userId!: Types.ObjectId;
 
     @Prop({ type: [Object], default: [] })
-    products: OrderProduct[];
+    products: OrderProduct[] = [];
 
     @Prop({ type: [Object], default: [] })
-    customTeas: OrderCustomTea[];
+    customTeas: OrderCustomTea[] = [];
 
     @Prop({ required: true })
-    totalAmount: number; 
+    totalAmount!: number; 
 
     @Prop({ required: true })
-    totalItems: number; 
+    totalItems!: number; 
     
     @Prop({ required: true, type: String, enum: Status, default: 'paid' })
-    status: Status
+    status!: Status
 
     @Prop({ required: true, type: String, enum: PaymentMethod, default: 'card' })
-    paymentMethod: PaymentMethod;
+    paymentMethod!: PaymentMethod;
 
     @Prop()
     cardLast4?: string;
 
     @Prop({ default: true })
-    isPaid: boolean; 
+    isPaid!: boolean; 
 
     @Prop({ default: Date.now })
-    paidAt: Date;
+    paidAt!: Date;
 
     @Prop({ type: Object, required: true })
-    deliveryAddress: DeliveryAddress
+    deliveryAddress!: DeliveryAddress
 
     @Prop( )
-    phone: string;
+    phone!: string;
     
 
 }
