@@ -32,6 +32,6 @@ export class RawMaterialsController {
 
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<void> {
-    return this.rawMaterialsService.remove(+id);
+    return this.rawMaterialsService.remove(id);
   }
 }
