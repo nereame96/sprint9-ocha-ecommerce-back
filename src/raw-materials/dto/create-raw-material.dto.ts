@@ -1,6 +1,4 @@
 import { IsNotEmpty, IsString, MinLength, MaxLength, IsNumber, Min, IsEnum, IsOptional, IsBoolean, Max } from "class-validator";
-import { Category } from "src/common/enums/category.enum";
-import { Intensity } from "src/common/enums/intensity.enum";
 import { RawMaterialType } from "src/common/enums/raw-materials-type";
 
 export class CreateRawMaterialDto {

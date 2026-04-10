@@ -29,7 +29,7 @@ export class ProductsService {
             return await createdProduct.save()
 
         } catch (error) {
-            if( error.code === 11000) {
+            if( (error as any).code === 11000) {
                 throw new ConflictException('Product already exist')
             }
             throw error;
