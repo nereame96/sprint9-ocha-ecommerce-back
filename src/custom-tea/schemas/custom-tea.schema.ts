@@ -10,28 +10,28 @@ export type CustomTeaDocument = CustomTea & Document;
 export class CustomTea {
   
   @Prop({ required: true, trim: true })
-  userId: string;
+  userId!: string;
 
   @Prop({ required: true, trim: true, minLength: 3, maxLength: 100 })
-  name: string;
+  name!: string;
 
   @Prop({ required: true, type: String, enum: Base })
-  base: Base;
+  base!: Base;
 
   @Prop({ required: true, enum: Object.values(Ingredients), type: [String] })
-  ingredients: Ingredients[];
+  ingredients!: Ingredients[];
 
   @Prop({ required: true, min: 0 })
-  calculatedPrice: number;
+  calculatedPrice!: number;
 
   @Prop({ required: true, min: 0 })
-  intensity: number;
+  intensity!: number;
 
   @Prop({ required: true, type: String, enum: Size })
-  size: Size;
+  size!: Size;
 
   @Prop({ required: true, trim: true })
-  imageUrl: string;
+  imageUrl!: string;
 }
 
 export const CustomTeaSchema = SchemaFactory.createForClass(CustomTea);

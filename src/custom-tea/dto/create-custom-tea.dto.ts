@@ -21,24 +21,21 @@ export class CreateCustomTeaDto {
   @IsString({ message: 'Name must be a chain of text' })
   @MinLength(3, { message: 'Name must have at least 3 characters' })
   @MaxLength(100, { message: 'Name cannot be have more than 100 characters' })
-  name: string;
-
-  @IsEnum(Base)
-  base: Base;
-
-  @IsEnum(Ingredients, { each: true })
-  @IsArray()
-  ingredients: Ingredients[];
-
-  @IsNumber()
-  calculatedPrice: number;
-
-  @IsNumber()
-  intensity: number;
-
-  @IsEnum(Size)
-  size: Size;
+  name!: string;
 
   @IsString()
-  imageUrl: string;
+  base!: string;
+
+  @IsString({each: true})
+  @IsArray()
+  ingredients!: string[];
+
+  @IsNumber()
+  intensity!: number;
+
+  @IsEnum(Size)
+  size!: Size;
+
+  @IsString()
+  imageUrl!: string;
 }

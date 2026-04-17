@@ -69,4 +69,15 @@ export class RawMaterialsService {
 
     await rawMaterial.save()
   }
+
+  async decreaseMultipleStocks(items: { id: string, quantity: number} []): Promise<void> {
+
+    await Promise.all(
+      items.map( item => this.decreaseStock(item.id, item.quantity))
+    )
+  }
+
+  async findManyByIds(ids: string[]): Promise<RawMaterial[]> {
+    return this.rawMaterialModel.find( {_id: { $in: ids } }).exec()
+  }
 }

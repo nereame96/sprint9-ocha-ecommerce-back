@@ -11,6 +11,10 @@ export class CreateRawMaterialDto {
     @IsEnum(RawMaterialType)
     type!: RawMaterialType
 
+    @IsNumber({}, {message: 'Price must be a number'})
+    @Min(0)
+    pricePerGram!: number
+
     @IsNumber({}, {message: 'Stock must be a number'})
     @Min(0,  {message: 'Stock cannot be inferior of 0'} )
     stockGrams!: number;
